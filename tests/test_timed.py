@@ -1,4 +1,4 @@
-from prftools import timed
+from pyprofile import timed
 from pytest import fixture
 from io import StringIO
 import logging
