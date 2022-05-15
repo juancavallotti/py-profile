@@ -27,7 +27,38 @@ def test_basic_timed(logging_output: StringIO):
 
     #chech the various aspects of timed.
     assert ret == "world" #check it returns the right value.
-    logging_output.flush()
     logs = logging_output.getvalue()
     assert "tester_function" in logs #the timed decorator should have logged something.
 
+
+def test_description_timed(logging_output: StringIO):
+    
+    description = "Some Function"
+    @timed(desc=description)
+    def tester_function():
+        logging.info("Hello world")
+        return "world"
+    
+    ret = tester_function()
+
+    #chech the various aspects of timed.
+    assert ret == "world" #check it returns the right value.
+    logs = logging_output.getvalue()
+    assert description in logs #the timed decorator should have logged something.
+    assert not "tester_function" in logs
+
+def test_formatted_timed(logging_output: StringIO):
+    
+    description = "Some Function"
+    @timed(desc=description, append_name=True)
+    def tester_function():
+        logging.info("Hello world")
+        return "world"
+    
+    ret = tester_function()
+
+    #chech the various aspects of timed.
+    assert ret == "world" #check it returns the right value.
+    logs = logging_output.getvalue()
+    assert description in logs #the timed decorator should have logged something.
+    assert "tester_function" in logs
