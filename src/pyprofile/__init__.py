@@ -1,0 +1,1 @@
+from .pyprofile import timed
