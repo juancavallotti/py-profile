@@ -1,6 +1,10 @@
+from asyncio.log import logger
 import time
-import logging as logger
+import logging
 
+
+#this allows turning profile messages on and off.
+logger = logging.getLogger("py-profile")
 
 #%% decorator to log the time taken on various activitites.
 def timed(*parg ,desc=None, append_name=False, append_template = "{} - {}"):
